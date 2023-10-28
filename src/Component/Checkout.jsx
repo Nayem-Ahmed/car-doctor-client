@@ -15,7 +15,7 @@ const Checkout = () => {
         const fname = e.target.fname.value;
         const lname = e.target.lname.value;
         const comments = e.target.comments.value;
-        const order = {email,title,phone,fname,lname,comments,img,service_id,_id,price}
+        const order = {email,title,phone,fname,lname,comments,img,service_id,price}
         fetch('http://localhost:5000/orders',{
             method:"POST",
             headers:{
