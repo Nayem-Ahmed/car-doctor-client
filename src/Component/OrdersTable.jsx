@@ -1,7 +1,8 @@
 import React from 'react';
 
-const OrdersTable = ({ table , handledelete}) => {
-    const { title, img, price, _id } = table;
+const OrdersTable = ({ table , handledelete,handleconfirm}) => {
+    const { title, img, price, _id ,status} = table;
+
 
     return (
 
@@ -30,7 +31,12 @@ const OrdersTable = ({ table , handledelete}) => {
             </td>
             <td>Purple</td>
             <th>
-                <button className="btn btn-ghost btn-xs">details</button>
+                {
+                    status === 'confirm' ? <span className='text-blue-600'>confirmed</span>
+                    :
+                    <button onClick={()=>handleconfirm(_id)} className="btn btn-ghost btn-xs">please confirm</button>
+
+                }
             </th>
         </tr>
 

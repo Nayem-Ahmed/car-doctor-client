@@ -46,6 +46,28 @@ const Allorders = () => {
 
 
     }
+    const handleconfirm = (id)=>{
+        fetch(`http://localhost:5000/orders/${id}`, {
+            method: "PATCH",
+            headers:{
+                'content-type':'application/json'
+            },
+            body:JSON.stringify({status:'confirm'})
+        })
+        .then(res => res.json())
+        .then(data=>{
+            console.log(data)
+            if (data.modifiedCount) {
+                const remaining = orders.filter(order=> order._id !== id)
+                const update = orders.find(order=> order._id === id)
+                update.status = 'confirm'
+                const neworder = [update, ...remaining]
+                setOrders(neworder)
+                
+            }
+        })
+
+    }
     return (
         <div>
             <div className="overflow-x-auto">
@@ -57,14 +79,14 @@ const Allorders = () => {
                             <th>Name</th>
                             <th>Price</th>
                             <th>Favorite Color</th>
-                            <th>dffffffffffff</th>
+                            <th>Status</th>
                         </tr>
                     </thead>
                     <tbody>
                         
 
                         {
-                            orders.map(table => <OrdersTable handledelete={handledelete} key={table._id} table={table}></OrdersTable>)
+                            orders.map(table => <OrdersTable handledelete={handledelete} handleconfirm={handleconfirm} key={table._id} table={table}></OrdersTable>)
 
                         }
 
