@@ -11,7 +11,6 @@ const Signup = () => {
         const name = e.target.text.value;
         const email = e.target.email.value;
         const password = e.target.password.value;
-        console.log(name, email, password)
         createuser(email,password)
         .then((result) => {
             const user = result.user;

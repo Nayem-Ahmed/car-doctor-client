@@ -10,6 +10,8 @@ import Login from "../Component/Login";
 import Signup from "../Component/Signup";
 import Servicedetails from "../Component/Servicedetails";
 import Checkout from "../Component/Checkout";
+import Allorders from "../Component/Allorders";
+import Privetrout from "./Privetrout";
 
 const router = createBrowserRouter([
     {
@@ -55,6 +57,10 @@ const router = createBrowserRouter([
                 path:'/servicedetails/:id',
                 loader:()=>fetch('http://localhost:5000/services'),
                 element:<Servicedetails></Servicedetails>,
+            },
+            {
+                path:'/orders',
+                element:<Privetrout><Allorders></Allorders></Privetrout>,
             },
         ]
     }

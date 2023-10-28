@@ -6,15 +6,16 @@ import { useLoaderData } from "react-router-dom";
 const Checkout = () => {
     const {user} = useContext(AuthContext);
     const loadercheckout = useLoaderData();
-    const {img,service_id,_id,price} = loadercheckout;
+    const {img,service_id,_id,price,title} = loadercheckout;
     const handlecheckout = (e)=>{
         e.preventDefault()
-        const email = e.target.email.value;
+        // const email = e.target.email.value;
+        const email = user?.email;
         const phone = e.target.phone.value;
-        const text = e.target.fname.value;
+        const fname = e.target.fname.value;
         const lname = e.target.lname.value;
         const comments = e.target.comments.value;
-        const order = {email,phone,text,lname,comments,img,service_id,_id,price}
+        const order = {email,title,phone,fname,lname,comments,img,service_id,_id,price}
         fetch('http://localhost:5000/orders',{
             method:"POST",
             headers:{

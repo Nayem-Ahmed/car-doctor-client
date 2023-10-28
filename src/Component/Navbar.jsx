@@ -2,14 +2,31 @@ import { Link, NavLink } from 'react-router-dom';
 import logo from '../assets/logo.png'
 import { LiaShoppingBagSolid } from 'react-icons/lia';
 import {AiOutlineSearch} from 'react-icons/ai';
+import { useContext } from 'react';
+import { AuthContext } from '../Provider/Authprovider';
 
 const Navbar = () => {
+  const {user,logout} = useContext(AuthContext)
+  const handlelogout = ()=>{
+    logout()
+    .then(()=>{})
+    .catch(error => console.log(error))
+
+  }
     const link = <>
     <li className='mr-3'><NavLink to='/'>Home</NavLink></li>
     <li className='mr-3'><NavLink to='/about'>About</NavLink></li>
     <li className='mr-3'><NavLink to='/services'>Services</NavLink></li>
     <li className='mr-3'><NavLink to='/blog'>Blog</NavLink></li>
+    {
+      user?.email ? <>
+      <li><button onClick={handlelogout}>Logout</button></li>
+      <li><NavLink to='/orders'>All orders</NavLink></li>
+
+      </>
+    :
     <li className='mr-3'><NavLink to='/login'>Login</NavLink></li>
+    }
     </>
     return (
         <div className="navbar bg-base-100">
