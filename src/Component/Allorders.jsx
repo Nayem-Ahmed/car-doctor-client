@@ -2,18 +2,26 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../Provider/Authprovider";
 import OrdersTable from "./OrdersTable";
 import Swal from "sweetalert2";
+import axios from "axios";
+
 
 
 const Allorders = () => {
     const { user } = useContext(AuthContext)
     const [orders, setOrders] = useState([])
     const url = `http://localhost:5000/orders?email=${user?.email}`;
+
     useEffect(() => {
-        fetch(url)
-            .then(res => res.json())
-            .then(data => {
-                setOrders(data)
-            })
+
+        axios.get(url,{withCredentials:true})
+        .then(res=>{
+            setOrders(res.data)
+        })
+        // fetch(url)
+        //     .then(res => res.json())
+        //     .then(data => {
+        //         setOrders(data)
+        //     })
     }, [])
     const handledelete = (id) => {
         Swal.fire({
