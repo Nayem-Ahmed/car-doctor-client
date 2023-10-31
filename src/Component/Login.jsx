@@ -28,13 +28,8 @@ const Login = () => {
                         if (res.data.success) {
                             navigate(location?.state ? location.state : '/');
 
-
-
                         }
                     })
-
-
-
             })
             .catch((error) => {
                 console.log(error)
