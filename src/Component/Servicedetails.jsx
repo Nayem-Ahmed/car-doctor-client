@@ -12,8 +12,8 @@ const Servicedetails = () => {
     const {img,service_id,_id,price,facility } = findDetails;
 
     return (
-        <div>
-            <div className="relative my-6" >
+        <div className="my-20">
+            <div  className="relative my-6 " >
                 <img src={checkout} alt="" />
                 <div className="absolute bg-gradient-to-r from-[#151515] to-[rgba(21, 21, 21, 0.00) 100%) rounded-md top-0 left-0 w-full h-full"></div>
             </div>

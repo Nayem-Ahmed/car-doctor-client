@@ -20,7 +20,6 @@ const Login = () => {
                 console.log(loginuser)
 
                 // access token jwt
-
                 const user = { email }
                 axios.post('http://localhost:5000/jwt', user, { withCredentials: true })
                     .then(res => {

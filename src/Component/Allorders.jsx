@@ -9,14 +9,16 @@ import axios from "axios";
 const Allorders = () => {
     const { user } = useContext(AuthContext)
     const [orders, setOrders] = useState([])
+
+
     const url = `http://localhost:5000/orders?email=${user?.email}`;
 
     useEffect(() => {
+        axios.get(url, { withCredentials: true })
+            .then(res => {
+                setOrders(res.data)
+            })
 
-        axios.get(url,{withCredentials:true})
-        .then(res=>{
-            setOrders(res.data)
-        })
         // fetch(url)
         //     .then(res => res.json())
         //     .then(data => {
@@ -40,13 +42,13 @@ const Allorders = () => {
                     .then(res => res.json())
                     .then(data => {
                         if (data.deletedCount > 0) {
-                            Swal.fire(
-                                'Deleted!',
-                                'Your file has been deleted.',
-                                'success'
-                            )
-                            const remaining = orders.filter(order=> order._id !== id)
-                            setOrders(remaining)
+                    Swal.fire(
+                        'Deleted!',
+                        'Your file has been deleted.',
+                        'success'
+                    )
+                    const remaining = orders.filter(order => order._id !== id)
+                    setOrders(remaining)
                         }
                     })
             }
@@ -54,30 +56,30 @@ const Allorders = () => {
 
 
     }
-    const handleconfirm = (id)=>{
+    const handleconfirm = (id) => {
         fetch(`http://localhost:5000/orders/${id}`, {
             method: "PATCH",
-            headers:{
-                'content-type':'application/json'
+            headers: {
+                'content-type': 'application/json'
             },
-            body:JSON.stringify({status:'confirm'})
+            body: JSON.stringify({ status: 'confirm' })
         })
-        .then(res => res.json())
-        .then(data=>{
-            console.log(data)
-            if (data.modifiedCount) {
-                const remaining = orders.filter(order=> order._id !== id)
-                const update = orders.find(order=> order._id === id)
-                update.status = 'confirm'
-                const neworder = [update, ...remaining]
-                setOrders(neworder)
-                
-            }
-        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                if (data.modifiedCount) {
+                    const remaining = orders.filter(order => order._id !== id)
+                    const update = orders.find(order => order._id === id)
+                    update.status = 'confirm'
+                    const neworder = [update, ...remaining]
+                    setOrders(neworder)
+
+                }
+            })
 
     }
     return (
-        <div>
+        <div className="my-10">
             <div className="overflow-x-auto">
                 <table className="table">
                     {/* head */}
@@ -91,7 +93,7 @@ const Allorders = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        
+
 
                         {
                             orders.map(table => <OrdersTable handledelete={handledelete} handleconfirm={handleconfirm} key={table._id} table={table}></OrdersTable>)

@@ -16,6 +16,7 @@ const Checkout = () => {
         const lname = e.target.lname.value;
         const comments = e.target.comments.value;
         const order = {email,title,phone,fname,lname,comments,img,service_id,price}
+
         fetch('http://localhost:5000/orders',{
             method:"POST",
             headers:{
@@ -25,7 +26,6 @@ const Checkout = () => {
         })
         .then(res=>res.json())
         .then(data=>{
-            console.log(data)
             if (data.insertedId) {
                 alert("order success")
                 

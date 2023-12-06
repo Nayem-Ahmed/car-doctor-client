@@ -12,7 +12,7 @@ const ServicesCards = ({ servicecard }) => {
 
     return (
         <Link to={`servicedetails/${_id}`}>
-        <div data-aos="zoom-in" className="card card-compact bg-base-100 shadow-xl my-10">
+        <div data-aos="zoom-in" className="card card-compact bg-base-100 shadow-xl mt-4">
             <figure>
                 <img className='h-48 w-full' src={img} alt="Service" />
             </figure>
