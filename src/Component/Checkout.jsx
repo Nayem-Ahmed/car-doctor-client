@@ -17,7 +17,7 @@ const Checkout = () => {
         const comments = e.target.comments.value;
         const order = {email,title,phone,fname,lname,comments,img,service_id,price}
 
-        fetch('http://localhost:5000/orders',{
+        fetch('https://car-doctor-server-tau-amber.vercel.app/orders',{
             method:"POST",
             headers:{
                 'content-type':'application/json'

@@ -11,7 +11,7 @@ const Allorders = () => {
     const [orders, setOrders] = useState([])
 
 
-    const url = `http://localhost:5000/orders?email=${user?.email}`;
+    const url = `https://car-doctor-server-tau-amber.vercel.app/orders?email=${user?.email}`;
 
     useEffect(() => {
         axios.get(url, { withCredentials: true })
@@ -36,19 +36,19 @@ const Allorders = () => {
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/orders/${id}`, {
+                fetch(`https://car-doctor-server-tau-amber.vercel.app/orders/${id}`, {
                     method: "DELETE",
                 })
                     .then(res => res.json())
                     .then(data => {
                         if (data.deletedCount > 0) {
-                    Swal.fire(
-                        'Deleted!',
-                        'Your file has been deleted.',
-                        'success'
-                    )
-                    const remaining = orders.filter(order => order._id !== id)
-                    setOrders(remaining)
+                            Swal.fire(
+                                'Deleted!',
+                                'Your file has been deleted.',
+                                'success'
+                            )
+                            const remaining = orders.filter(order => order._id !== id)
+                            setOrders(remaining)
                         }
                     })
             }
@@ -57,7 +57,7 @@ const Allorders = () => {
 
     }
     const handleconfirm = (id) => {
-        fetch(`http://localhost:5000/orders/${id}`, {
+        fetch(`https://car-doctor-server-tau-amber.vercel.app/orders/${id}`, {
             method: "PATCH",
             headers: {
                 'content-type': 'application/json'

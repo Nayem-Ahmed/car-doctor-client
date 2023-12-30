@@ -21,7 +21,7 @@ const router = createBrowserRouter([
         children:[
             {
                 path:'/',
-                // loader:()=>fetch(`http://localhost:5000/services`),
+                // loader:()=>fetch(`https://car-doctor-server-tau-amber.vercel.app/services`),
                 element:<Home></Home>,
             },
             {
@@ -50,12 +50,12 @@ const router = createBrowserRouter([
             },
             {
                 path:'/checkout/:id',
-                loader:({params})=>fetch(`http://localhost:5000/services/${params.id}`),
+                loader:({params})=>fetch(`https://car-doctor-server-tau-amber.vercel.app/services/${params.id}`),
                 element:<Privetrout><Checkout></Checkout></Privetrout>,
             },
             {
                 path:'/servicedetails/:id',
-                loader:()=>fetch('http://localhost:5000/services'),
+                loader:()=>fetch('https://car-doctor-server-tau-amber.vercel.app/services'),
                 element:<Servicedetails></Servicedetails>,
             },
             {

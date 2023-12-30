@@ -15,7 +15,7 @@ const Navbar = () => {
         // access token jwt
         const userEmail = result?.email || user?.email;
 
-        axios.post('http://localhost:5000/logout', { userEmail }, { withCredentials: true })
+        axios.post('https://car-doctor-server-tau-amber.vercel.app/logout', { userEmail }, { withCredentials: true })
           .then(res => {
             console.log(res.data)
 
